@@ -1,0 +1,5 @@
+codigo;nome;descricao;responsavel;dataInicio;dataFim;status;orcamento
+PRJ001;Expansão Regional Sul;Expandir operações para região Sul;Maria Santos;2026-01-01;2026-12-31;Planejado;500000
+PRJ002;Transformação Digital;Digitalizar processos core;João Silva;2026-02-01;2026-08-31;Em andamento;300000
+PRJ003;Novo Produto X;Desenvolvimento e lançamento do produto X;Ana Costa;2026-03-01;2026-09-30;Planejado;200000
+PRJ004;Melhoria Logística;Otimizar cadeia de suprimentos;Carlos Lima;2026-01-15;2026-07-15;Em andamento;150000

@@ -1,0 +1,6 @@
+titulo;descricao;responsavel;dataInicio;dataFim;prioridade;status
+Revisar processo de vendas;Mapear e otimizar pipeline comercial;João Silva;2026-01-01;2026-03-31;Alta;Em andamento
+Implementar CRM;Configurar e treinar equipe no novo CRM;Maria Santos;2026-02-01;2026-06-30;Alta;Pendente
+Pesquisa de satisfação;Realizar pesquisa NPS com clientes;Ana Costa;2026-01-15;2026-02-15;Media;Concluída
+Treinamento equipe;Capacitação em novas ferramentas;Carlos Lima;2026-03-01;2026-04-30;Media;Pendente
+Auditoria interna;Auditoria de processos operacionais;Pedro Oliveira;2026-04-01;2026-05-31;Alta;Pendente

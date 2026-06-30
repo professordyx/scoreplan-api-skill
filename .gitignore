@@ -1,8 +1,6 @@
 __pycache__/
 *.pyc
 .env
-.venv/
-*.egg-info/
-dist/
-build/
-.DS_Store
+*.bak
+*.bak2
+token.txt

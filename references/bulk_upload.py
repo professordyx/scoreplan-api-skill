@@ -50,6 +50,17 @@ except ImportError:
 
 # ─── Configuração ────────────────────────────────────────────────────────────
 
+
+def _to_br_date(d):
+    """Converte yyyy-mm-dd -> dd/mm/yyyy; mantem se ja estiver em dd/mm/yyyy."""
+    if not d:
+        return d
+    d = str(d).strip()
+    if "-" in d and len(d.split("-")[0]) == 4:
+        y, m, day = d.split("-")[:3]
+        return f"{day.zfill(2)}/{m.zfill(2)}/{y}"
+    return d
+
 DEFAULT_DELAY = 0.2  # segundos entre requisições
 
 
@@ -131,7 +142,7 @@ class ScoreplanClient:
                 print("ERRO: API v1 requer --api-key")
                 sys.exit(1)
             # v1 usa chave na URL, validar
-            resp = self.session.get(f"{self.base_url}/api/1.0/{self.api_key}/ValidarChave")
+            resp = self.session.get(f"{self.base_url}/api/1.0/{self.api_key}/Console/Ping")
             if resp.status_code != 200:
                 print(f"ERRO: Chave da API inválida. Status: {resp.status_code}")
                 sys.exit(1)
@@ -150,7 +161,7 @@ class ScoreplanClient:
         print(f"Autenticando como '{self.login}'...")
         resp = self.session.post(
             f"{self.base_url}/auth/login",
-            json={"login": self.login, "password": self.password}
+            json={"Username": self.login, "Password": self.password}
         )
         if resp.status_code != 200:
             print(f"ERRO: Falha na autenticação. Status: {resp.status_code}")
@@ -237,7 +248,7 @@ def upload_indicators(client: ScoreplanClient, records: list[dict], dry_run: boo
                 print(f"  [{i}/{len(records)}] AVISO: API v1 não suporta criação direta de indicadores")
                 errors += 1
                 continue
-            result = client.post("indicators", payload)
+            result = client.post("Indicators/Insert", payload)
             print(f"  [{i}/{len(records)}] OK: {payload.get('codigo')} — {payload.get('nome')}")
             success += 1
         except Exception as e:
@@ -256,29 +267,39 @@ def upload_actions(client: ScoreplanClient, records: list[dict], dry_run: bool, 
     print(f"\n{'[DRY RUN] ' if dry_run else ''}Enviando {len(records)} ações...")
     success, errors = 0, 0
     for i, rec in enumerate(records, 1):
+        # ActionDTO da API v2 External
+        resp_uid = rec.get("responsibleUserId") or rec.get("userId")
+        responsibles = [{"userId": int(resp_uid), "trackProgress": False}] if resp_uid else []
+        tags = rec.get("tags")
+        tags = [t.strip() for t in tags.split(",")] if isinstance(tags, str) and tags else []
         payload = {
-            "titulo": rec.get("titulo"),
-            "descricao": rec.get("descricao", ""),
-            "responsavel": rec.get("responsavel", ""),
-            "dataInicio": rec.get("dataInicio"),
-            "dataFim": rec.get("dataFim"),
-            "prioridade": rec.get("prioridade", "Media"),
-            "status": rec.get("status", "Pendente"),
+            "title": rec.get("title") or rec.get("titulo"),
+            "startDateEstimated": _to_br_date(rec.get("startDateEstimated") or rec.get("dataInicio")),
+            "endDateEstimated": _to_br_date(rec.get("endDateEstimated") or rec.get("dataFim")),
+            "situation": int(rec.get("situation") or 0),
+            "raci": {
+                "responsibles": responsibles, "groupResponsible": [],
+                "authorities": responsibles, "groupAuthority": [],
+                "consulted": [], "groupConsulted": [],
+                "informed": [], "groupInformed": [],
+            },
+            "tags": tags,
+            "sector": rec.get("sector") or rec.get("setor") or "",
         }
-        payload = {k: v for k, v in payload.items() if v is not None}
 
         if dry_run:
-            print(f"  [{i}/{len(records)}] {payload.get('titulo', '?')}")
+            print(f"  [{i}/{len(records)}] {payload.get('title', '?')}")
             success += 1
             continue
 
         try:
-            endpoint = "actions" if client.api_version == "v2" else "AlterarValoresAcao"
-            result = client.post(endpoint, payload)
-            print(f"  [{i}/{len(records)}] OK: {payload.get('titulo')}")
+            if client.api_version == "v1":
+                raise RuntimeError("API v1 nao cria acoes - use v2 External (Actions/External/Insert)")
+            result = client.post("Actions/External/Insert", payload)
+            print(f"  [{i}/{len(records)}] OK: {payload.get('title')}")
             success += 1
         except Exception as e:
-            print(f"  [{i}/{len(records)}] ERRO: {payload.get('titulo')} — {e}")
+            print(f"  [{i}/{len(records)}] ERRO: {payload.get('title')} — {e}")
             errors += 1
 
         if delay > 0:
@@ -288,39 +309,126 @@ def upload_actions(client: ScoreplanClient, records: list[dict], dry_run: bool, 
     return success, errors
 
 
+def _raci(rec):
+    """Monta RACI da API External a partir de responsibleUserId/userId (grupos vazios p/ evitar erro)."""
+    uid = rec.get("responsibleUserId") or rec.get("userId")
+    responsibles = [{"userId": int(uid), "trackProgress": False}] if uid else []
+    return {
+        "responsibles": responsibles, "groupResponsible": [],
+        "authorities": responsibles, "groupAuthority": [],
+        "consulted": [], "groupConsulted": [],
+        "informed": [], "groupInformed": [],
+    }
+
+
+def _tags(rec):
+    t = rec.get("tags")
+    return [x.strip() for x in t.split(",")] if isinstance(t, str) and t else []
+
+
+def upload_programs(client: ScoreplanClient, records: list[dict], dry_run: bool, delay: float):
+    """Upload de programas em massa (v2 External -> Program/External/Insert)."""
+    print(f"\n{'[DRY RUN] ' if dry_run else ''}Enviando {len(records)} programas...")
+    success, errors = 0, 0
+    for i, rec in enumerate(records, 1):
+        payload = {"title": rec.get("title") or rec.get("titulo") or rec.get("nome"), "raci": _raci(rec)}
+        if dry_run:
+            print(f"  [{i}/{len(records)}] {payload.get('title', '?')}")
+            success += 1
+            continue
+        try:
+            client.post("Program/External/Insert", payload)
+            print(f"  [{i}/{len(records)}] OK: {payload.get('title')}")
+            success += 1
+        except Exception as e:
+            print(f"  [{i}/{len(records)}] ERRO: {payload.get('title')} — {e}")
+            errors += 1
+        if delay > 0:
+            time.sleep(delay)
+    print(f"\nResultado: {success} sucesso, {errors} erros")
+    return success, errors
+
+
 def upload_projects(client: ScoreplanClient, records: list[dict], dry_run: bool, delay: float):
-    """Upload de projetos em massa."""
+    """Upload de projetos em massa (v2 External -> Project/External/Insert).
+
+    Colunas: title, programId, situation, level (E/T/O), startDateEstimated|dataInicio,
+    endDateEstimated|dataFim, estimatedExpenseDeduction, estimatedRevenueDeduction,
+    responsibleUserId, tags, sector.
+    """
     print(f"\n{'[DRY RUN] ' if dry_run else ''}Enviando {len(records)} projetos...")
     success, errors = 0, 0
     for i, rec in enumerate(records, 1):
         payload = {
-            "codigo": rec.get("codigo"),
-            "nome": rec.get("nome"),
-            "descricao": rec.get("descricao", ""),
-            "responsavel": rec.get("responsavel", ""),
-            "dataInicio": rec.get("dataInicio"),
-            "dataFim": rec.get("dataFim"),
-            "status": rec.get("status", "Planejado"),
-            "orcamento": float(rec["orcamento"]) if rec.get("orcamento") else None,
+            "title": rec.get("title") or rec.get("titulo") or rec.get("nome"),
+            "programId": int(rec["programId"]) if rec.get("programId") else None,
+            "situation": int(rec.get("situation") or 1),
+            "level": rec.get("level") or "O",
+            "startDateEstimated": _to_br_date(rec.get("startDateEstimated") or rec.get("dataInicio")),
+            "endDateEstimated": _to_br_date(rec.get("endDateEstimated") or rec.get("dataFim")),
+            "validateDate": False,
+            "raci": _raci(rec),
+            "tags": _tags(rec),
+            "sector": rec.get("sector") or rec.get("setor") or "",
         }
+        if rec.get("estimatedExpenseDeduction"):
+            payload["estimatedExpenseDeduction"] = float(rec["estimatedExpenseDeduction"])
+        if rec.get("estimatedRevenueDeduction"):
+            payload["estimatedRevenueDeduction"] = float(rec["estimatedRevenueDeduction"])
         payload = {k: v for k, v in payload.items() if v is not None}
 
         if dry_run:
-            print(f"  [{i}/{len(records)}] {payload.get('codigo', '?')} — {payload.get('nome', '?')}")
+            print(f"  [{i}/{len(records)}] {payload.get('title', '?')}")
             success += 1
             continue
-
         try:
-            result = client.post("projects", payload)
-            print(f"  [{i}/{len(records)}] OK: {payload.get('codigo')} — {payload.get('nome')}")
+            client.post("Project/External/Insert", payload)
+            print(f"  [{i}/{len(records)}] OK: {payload.get('title')}")
             success += 1
         except Exception as e:
-            print(f"  [{i}/{len(records)}] ERRO: {payload.get('codigo')} — {e}")
+            print(f"  [{i}/{len(records)}] ERRO: {payload.get('title')} — {e}")
             errors += 1
-
         if delay > 0:
             time.sleep(delay)
+    print(f"\nResultado: {success} sucesso, {errors} erros")
+    return success, errors
 
+
+def upload_phases(client: ScoreplanClient, records: list[dict], dry_run: bool, delay: float):
+    """Upload de fases de projeto em massa (v2 External -> ProjectPhase/External/Insert).
+
+    Colunas: title, projectId, startDateEstimated|dataInicio, endDateEstimated|dataFim,
+    estimatedExpenseDeduction, estimatedRevenueDeduction, weight.
+    """
+    print(f"\n{'[DRY RUN] ' if dry_run else ''}Enviando {len(records)} fases...")
+    success, errors = 0, 0
+    for i, rec in enumerate(records, 1):
+        payload = {
+            "title": rec.get("title") or rec.get("titulo") or rec.get("nome"),
+            "projectId": int(rec["projectId"]) if rec.get("projectId") else None,
+            "startDateEstimated": _to_br_date(rec.get("startDateEstimated") or rec.get("dataInicio")),
+            "endDateEstimated": _to_br_date(rec.get("endDateEstimated") or rec.get("dataFim")),
+            "weight": float(rec["weight"]) if rec.get("weight") else None,
+        }
+        if rec.get("estimatedExpenseDeduction"):
+            payload["estimatedExpenseDeduction"] = float(rec["estimatedExpenseDeduction"])
+        if rec.get("estimatedRevenueDeduction"):
+            payload["estimatedRevenueDeduction"] = float(rec["estimatedRevenueDeduction"])
+        payload = {k: v for k, v in payload.items() if v is not None}
+
+        if dry_run:
+            print(f"  [{i}/{len(records)}] {payload.get('title', '?')} (projectId={payload.get('projectId')})")
+            success += 1
+            continue
+        try:
+            client.post("ProjectPhase/External/Insert", payload)
+            print(f"  [{i}/{len(records)}] OK: {payload.get('title')}")
+            success += 1
+        except Exception as e:
+            print(f"  [{i}/{len(records)}] ERRO: {payload.get('title')} — {e}")
+            errors += 1
+        if delay > 0:
+            time.sleep(delay)
     print(f"\nResultado: {success} sucesso, {errors} erros")
     return success, errors
 
@@ -355,7 +463,7 @@ def upload_okrs(client: ScoreplanClient, records: list[dict], dry_run: bool, del
             continue
 
         try:
-            result = client.post("okrs", payload)
+            raise RuntimeError("OKR nao suporta insert via API External (apenas OKR/External/List)")
             print(f"  [{i}/{len(records)}] OK: {payload.get('objetivo')} ({len(key_results)} KRs)")
             success += 1
         except Exception as e:
@@ -398,7 +506,7 @@ def upload_indicator_values(client: ScoreplanClient, records: list[dict], dry_ru
                     "campoId": indicator_key,
                     "valores": [{"periodoId": v.get("periodoId", v.get("periodo")), "valor": v["valor"]} for v in values]
                 }
-                result = client.post("InserirValorCampoIntegrado", payload)
+                result = client.post("CamposIndicadores/InserirValor", payload)
             else:
                 payload = {"valores": values}
                 result = client.post(f"indicators/{indicator_key}/values", payload)
@@ -440,7 +548,7 @@ def upload_integration_fields(client: ScoreplanClient, records: list[dict], dry_
 
         try:
             if client.api_version == "v1":
-                result = client.post("InserirValorCampoIntegrado", payload)
+                result = client.post("CamposIndicadores/InserirValor", payload)
             else:
                 result = client.post("integration-fields/values", payload)
             print(f"  [{i}/{len(grouped)}] OK: Campo {campo_id} — {len(values)} valores")
@@ -461,7 +569,9 @@ def upload_integration_fields(client: ScoreplanClient, records: list[dict], dry_
 UPLOAD_HANDLERS = {
     "indicators": upload_indicators,
     "actions": upload_actions,
+    "programs": upload_programs,
     "projects": upload_projects,
+    "phases": upload_phases,
     "okrs": upload_okrs,
     "indicator-values": upload_indicator_values,
     "integration-fields": upload_integration_fields,

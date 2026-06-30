@@ -1,244 +1,125 @@
-# Scoreplan API Skill — Claude Code Integration
+# Scoreplan API — Skill & Toolkit
 
-Skill para [Claude Code](https://claude.com/claude-code) que permite gerenciar e integrar dados com a [API do Scoreplan](https://app.scoreplan.com.br/api/docs) — indicadores, ações, projetos, OKRs, períodos, orçamento e campos integrados. Inclui **upload em massa via planilha (.xlsx/.csv)**.
+Integração com a **API do Scoreplan** (ações, projetos, programas, fases, OKR, GED, orçamento/financeiro, RH/GDP e indicadores), empacotada como uma **[Claude Skill](https://docs.claude.com/en/docs/claude-code/skills)** + um script de **upload em massa** via planilha (`.xlsx`/`.csv`).
 
-## Funcionalidades
+> Contrato de API verificado por engenharia reversa da documentação oficial (`app.scoreplan.com.br/api/docs`) e confirmado com chamadas reais à API de produção. Documentação anterior continha endpoints/credenciais incorretos — aqui está o contrato real.
 
-- **Autenticação** automática via Bearer Token (API v2) ou Chave da API (API v1)
-- **CRUD completo** de indicadores, ações, projetos, OKRs e períodos
-- **Upload em massa** via planilha (.xlsx ou .csv) — indicadores, ações, projetos, OKRs e valores
-- **Templates prontos** para cada tipo de upload
-- **Script Python** standalone para integrações automatizadas
-- **Tratamento de erros** com rollback automático (inserções transacionais)
+## Por que este repositório existe
 
-## Instalação
+A documentação pública do Scoreplan é incompleta e parte do contrato (nomes de campos de autenticação, paths de endpoints, schemas de body) só está disponível em imagens ou dentro do app autenticado. Este projeto consolida **o contrato real, testado**, em formato reutilizável.
 
-### 1. Copiar a skill para o Claude Code
+## Conteúdo
 
-```bash
-# Clonar o repositório
-git clone https://github.com/SEU_USUARIO/scoreplan-api-skill.git
+| Arquivo | Descrição |
+|---|---|
+| [`SKILL.md`](SKILL.md) | A skill em si (instruções + contrato completo da API) |
+| [`references/bulk_upload.py`](references/bulk_upload.py) | Script de upload em massa (ações, programas, projetos, fases, valores) |
+| [`references/scoreplan_api_catalog.txt`](references/scoreplan_api_catalog.txt) | Catálogo dos 109 endpoints (url, método, body, params, enums) |
+| [`examples/`](examples/) | Planilhas de exemplo (.csv) |
+| [`.claude/skills/scoreplan/`](.claude/skills/scoreplan/) | A skill já no layout pronto para instalar |
 
-# Copiar para o diretório de skills do Claude Code
-cp -r scoreplan-api-skill/skill ~/.claude/skills/scoreplan
-```
+## As 3 superfícies de API
 
-### 2. Estrutura de diretórios
+| Superfície | Base | Auth | Uso |
+|---|---|---|---|
+| **v2 External** ⭐ | `https://api-prod.scoreplan.com.br/{Modulo}/External/{Op}` | Bearer Token | **Criar/atualizar** ações, projetos, programas, fases, valores; importar RH/GDP; ler OKR/GED |
+| v2 "interna" | `https://api-prod.scoreplan.com.br/{Modulo}/{Op}` | Bearer Token | Exige **módulo de API liberado**; senão `401 "You don't have access"` |
+| v1 clássica | `https://api-prod.scoreplan.com.br/api/1.0/{chave}/{Modulo}/{Op}` | Chave na URL | Listar ações/indicadores; lançar valores; períodos |
 
-```
-~/.claude/skills/scoreplan/
-├── SKILL.md                          # Definição principal da skill
-└── references/
-    ├── api-catalog.md                # Catálogo completo de endpoints
-    ├── bulk_upload.py                # Script de upload em massa
-    └── templates/
-        ├── indicadores.csv           # Template para indicadores
-        ├── acoes.csv                 # Template para ações
-        ├── projetos.csv              # Template para projetos
-        ├── okrs.csv                  # Template para OKRs
-        └── valores-indicadores.csv   # Template para valores
-```
+> ⭐ **A API External funciona com o Bearer token normal, mesmo quando a v2 interna retorna `401`.** É o caminho recomendado.
 
-### 3. Dependências (para upload em massa)
+## Autenticação
 
 ```bash
-pip install requests openpyxl
-```
-
-## Uso com Claude Code
-
-Após instalar, basta mencionar "Scoreplan" em qualquer conversa com o Claude Code:
-
-```
-> Listar indicadores do Scoreplan
-> Importar ações da planilha acoes.xlsx para o Scoreplan
-> Criar um projeto no Scoreplan chamado "Expansão 2026"
-> Upload em massa de OKRs via planilha
-> Buscar valores do indicador IND001 no Scoreplan
-```
-
-## API do Scoreplan
-
-### Versões
-
-| Versão | Base URL | Autenticação | Status |
-|--------|----------|--------------|--------|
-| **v2 (Connector)** | `https://api-prod.scoreplan.com.br/` | Bearer Token (2h) | Recomendada |
-| **v1 (Clássica)** | `https://api-prod.scoreplan.com.br/api/1.0/{chave}/{metodo}` | Chave na URL | Legacy |
-
-### Autenticação (API v2)
-
-```bash
-# 1. Obter token
 curl -X POST "https://api-prod.scoreplan.com.br/auth/login" \
   -H "Content-Type: application/json" \
-  -d '{"login": "USUARIO", "password": "SENHA"}'
-
-# 2. Usar token nas chamadas (válido por 2h)
-curl -X GET "https://api-prod.scoreplan.com.br/indicators" \
-  -H "Authorization: Bearer {TOKEN}" \
-  -H "Content-Type: application/json"
+  -d '{"Username": "usuario@empresa.com", "Password": "SUA_SENHA"}'
 ```
+Campos são **`Username`/`Password`** (PascalCase). A resposta traz `token` (JWT, validade 2h), `refreshToken`, `businessGroupLogged`, `companyLogged`, `businessGroups[]`. Use `Authorization: Bearer <token>`. O `userId` do usuário fica no claim `name` do JWT.
 
-### Endpoints Disponíveis
-
-#### Indicadores
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/indicators` | Listar indicadores |
-| GET | `/indicators/{id}` | Obter indicador |
-| POST | `/indicators` | Criar indicador |
-| PUT | `/indicators/{id}` | Atualizar indicador |
-| DELETE | `/indicators/{id}` | Remover indicador |
-| GET | `/indicators/{id}/values` | Valores do indicador |
-| POST | `/indicators/{id}/values` | Inserir valores |
-
-#### Ações
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/actions` | Listar ações |
-| GET | `/actions/{id}` | Obter ação |
-| POST | `/actions` | Criar ação |
-| PUT | `/actions/{id}` | Atualizar ação |
-| DELETE | `/actions/{id}` | Remover ação |
-
-#### Projetos
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/projects` | Listar projetos |
-| GET | `/projects/{id}` | Obter projeto |
-| POST | `/projects` | Criar projeto |
-| PUT | `/projects/{id}` | Atualizar projeto |
-| DELETE | `/projects/{id}` | Remover projeto |
-
-#### OKRs
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/okrs` | Listar OKRs |
-| GET | `/okrs/{id}` | Obter OKR |
-| POST | `/okrs` | Criar OKR |
-| PUT | `/okrs/{id}` | Atualizar OKR |
-| DELETE | `/okrs/{id}` | Remover OKR |
-
-#### Períodos
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/periods` | Listar períodos |
-| POST | `/periods` | Criar período |
-
-#### Orçamento
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/budget` | Listar orçamentos |
-| GET | `/budget/{id}` | Obter orçamento |
-
-#### Campos Integrados
-| Método | Endpoint | Descrição |
-|--------|----------|-----------|
-| GET | `/integration-fields` | Listar campos |
-| POST | `/integration-fields/values` | Inserir valores |
-
-#### API v1 (Legacy)
-| Método | Endpoint | HTTP | Descrição |
-|--------|----------|------|-----------|
-| ValidarChave | `/ValidarChave` | GET | Validar chave |
-| ListarPeriodos | `/ListarPeriodos` | GET | Listar períodos |
-| InserirPeriodo | `/InserirPeriodo` | POST | Criar período |
-| ListarIndicadores | `/ListarIndicadores` | GET | Listar indicadores |
-| ListarCamposIntegracao | `/ListarCamposIntegracao` | GET | Campos integrados |
-| InserirValorCampoIntegrado | `/InserirValorCampoIntegrado` | POST | Inserir valor |
-| ListarAcoes | `/ListarAcoes` | GET | Listar ações |
-| AlterarValoresAcao | `/AlterarValoresAcao` | POST | Alterar ação |
-
-## Upload em Massa via Planilha
-
-### Templates Disponíveis
-
-| Template | Arquivo | Colunas |
-|----------|---------|---------|
-| Indicadores | `templates/indicadores.csv` | codigo, nome, descricao, unidade, polaridade, meta, periodoTipo |
-| Ações | `templates/acoes.csv` | titulo, descricao, responsavel, dataInicio, dataFim, prioridade, status |
-| Projetos | `templates/projetos.csv` | codigo, nome, descricao, responsavel, dataInicio, dataFim, status, orcamento |
-| OKRs | `templates/okrs.csv` | objetivo, descricao, responsavel, periodo, keyResult1-5, meta1-5 |
-| Valores | `templates/valores-indicadores.csv` | indicadorCodigo, periodo, valor |
-
-### Usando o Script Python
+## Criar uma ação (exemplo mínimo)
 
 ```bash
-# Upload de indicadores
-python3 scripts/bulk_upload.py \
-  --url "https://api-prod.scoreplan.com.br" \
-  --login "admin" \
-  --password "senha123" \
-  --type indicators \
-  --file templates/indicadores.csv
-
-# Upload de ações
-python3 scripts/bulk_upload.py \
-  --url "https://api-prod.scoreplan.com.br" \
-  --login "admin" \
-  --password "senha123" \
-  --type actions \
-  --file planilha_acoes.xlsx
-
-# Upload de OKRs
-python3 scripts/bulk_upload.py \
-  --url "https://api-prod.scoreplan.com.br" \
-  --login "admin" \
-  --password "senha123" \
-  --type okrs \
-  --file okrs.xlsx
-
-# Dry run (simulação sem enviar)
-python3 scripts/bulk_upload.py \
-  --url "https://api-prod.scoreplan.com.br" \
-  --login "admin" \
-  --password "senha123" \
-  --type indicators \
-  --file indicadores.xlsx \
-  --dry-run
-
-# API v1 com chave
-python3 scripts/bulk_upload.py \
-  --url "https://api-prod.scoreplan.com.br" \
-  --api-version v1 \
-  --api-key "MINHA_CHAVE_API" \
-  --type indicator-values \
-  --file valores.csv
+curl -X POST "https://api-prod.scoreplan.com.br/Actions/External/Insert" \
+  -H "Authorization: Bearer $TOKEN" -H "Content-Type: application/json" \
+  -d '{
+    "title": "Ação criada via API",
+    "startDateEstimated": "01/07/2026",
+    "endDateEstimated": "31/07/2026",
+    "situation": 0,
+    "raci": {
+      "responsibles": [{"userId": 18914, "trackProgress": false}],
+      "authorities":  [{"userId": 18914, "trackProgress": false}],
+      "groupResponsible": [], "groupAuthority": [],
+      "consulted": [], "groupConsulted": [],
+      "informed": [], "groupInformed": []
+    },
+    "tags": [], "sector": ""
+  }'
 ```
 
-### Tipos de Upload
+**Regras importantes:**
+- Datas em `dd/mm/yyyy`.
+- `userId` deve existir (mapeie e-mails via `GET /User/External/List`).
+- `userGroupId` na RACI **precisa existir** no grupo, senão `400`. Deixe os arrays `group*` vazios para evitar.
+- `sector` e `tags` são opcionais.
+- `situation`: `0` Não iniciado · `1` Em andamento · `2` Finalizado · `3` Cancelado · `4` Rascunho · `5` Finalizado com atraso · `6` Arquivado.
 
-| Tipo | Flag | Descrição |
-|------|------|-----------|
-| `indicators` | `--type indicators` | Criar indicadores |
-| `actions` | `--type actions` | Criar ações |
-| `projects` | `--type projects` | Criar projetos |
-| `okrs` | `--type okrs` | Criar OKRs |
-| `indicator-values` | `--type indicator-values` | Valores de indicadores |
-| `integration-fields` | `--type integration-fields` | Valores de campos integrados |
+## Recursos da API External
 
-### Opções do Script
+- **Ações** — `Actions/External/{List, Select, Insert, InsertChangeProgress, Reopen, Update, UpdateValues, Cancel}`
+- **Programas/Projetos/Fases** — `Program|Project|ProjectPhase /External/{List, Select, Insert, Update, Delete}` (+ `ProjectPhase/External/InsertAction`)
+- **OKR** — `OKR/External/List` (somente leitura)
+- **GED** — `GedDocument/External/{List, Select}`
+- **Financeiro/Orçamento** — `FinancialManagement/External{InsertValues, ListBudgetPlans, ...}`, `FinancialManagementAccounting[Ledger]/External*`, `FinancialItems/External*`, vários `*/Lov`
+- **RH/GDP** — `Hrm*/External/{ImportPositions, ImportEmployees, ImportSkills, ...}`
+- **Utilitários** — `User/External/List` (e-mail → userId), `User/External/ListGroup`, `Attachments/External/GetFile`, `Queue/GetStatus`
 
-| Flag | Descrição | Default |
-|------|-----------|---------|
-| `--url` | Base URL da API | (obrigatório) |
-| `--login` | Usuário (API v2) | - |
-| `--password` | Senha (API v2) | - |
-| `--api-version` | `v1` ou `v2` | `v2` |
-| `--api-key` | Chave da API (v1) | - |
-| `--type` | Tipo de upload | (obrigatório) |
-| `--file` | Arquivo .xlsx ou .csv | (obrigatório) |
-| `--dry-run` | Simular sem enviar | `false` |
-| `--delay` | Delay entre requests (s) | `0.2` |
+> ⚠️ **Indicadores não têm criação via API External.** Para valores: `FinancialManagement/ExternalInsertValues` (orçamento) ou v1 `CamposIndicadores/InserirValor`. Criar o indicador em si só pela interface ou pela v2 interna (`/Indicators/Insert`, requer módulo liberado).
 
-## Documentação Oficial
+Catálogo completo: [`references/scoreplan_api_catalog.txt`](references/scoreplan_api_catalog.txt).
 
-- [Connector (v2)](https://docs.scoreplan.com.br/Manuais/Visualizar/698)
-- [API Clássica (v1)](https://docs.scoreplan.com.br/Manuais/Visualizar/149)
-- [Swagger UI](https://app.scoreplan.com.br/api/docs)
-- [Blog: Integração via API](https://scoreplan.com.br/blog/integracao-via-api-como-funciona-e-que-vantagens-isso-traz-para-o-seu-negocio/)
+## Upload em massa via planilha
 
-## Licença
+```bash
+# Ações (v2 External)
+python3 references/bulk_upload.py \
+  --url "https://api-prod.scoreplan.com.br" \
+  --login "usuario@empresa.com" --password "SENHA" \
+  --type actions --file examples/acoes_exemplo.csv
 
-MIT
+# Simular sem enviar
+python3 references/bulk_upload.py --url ... --login ... --password ... \
+  --type projects --file examples/projetos_exemplo.csv --dry-run
+```
+
+**Tipos suportados:** `actions`, `programs`, `projects`, `phases`, `indicators`, `okrs`, `indicator-values`, `integration-fields`.
+Colunas aceitas (ações): `title`, `dataInicio`/`startDateEstimated`, `dataFim`/`endDateEstimated`, `situation`, `responsibleUserId`, `sector`, `tags`. O script converte datas `yyyy-mm-dd → dd/mm/yyyy` automaticamente. Requer Python 3 e `requests` (`pip install requests`); `openpyxl` para `.xlsx`.
+
+## API v1 (clássica)
+
+Útil para **listar** e **lançar valores** (não cria ações). Envelope: `{"ApiResposta":{"Status","Conteudo"}}`. Valide a chave com `Console/Ping`.
+
+| Método | Verbo | Descrição |
+|---|---|---|
+| `Console/Ping` | GET | valida a chave |
+| `Acoes/Listar` | GET | lista ações |
+| `Acoes/AlterarValores` | POST | valores financeiros de ação existente (`acaoId`) |
+| `Indicadores/Listar` | GET | lista indicadores (param `usuario`) |
+| `CamposIndicadores/InserirValor` | POST | valor de campo integrado de indicador |
+| `CamposIndicadores/ListarProximosV2` | GET | campos pendentes de integração |
+| `TiposPeriodo/{ListarPeriodos, InserirPeriodos}` | GET | períodos |
+
+## Instalar como Claude Skill
+
+Copie a pasta da skill para o seu diretório de skills do Claude Code:
+
+```bash
+cp -r .claude/skills/scoreplan ~/.claude/skills/
+```
+
+Depois, no Claude Code, mencione "Scoreplan" / "API Scoreplan" e a skill será acionada.
+
+## Aviso
+
+Projeto não oficial, sem vínculo com o Scoreplan. Use credenciais próprias e respeite os termos de uso da plataforma. Nenhuma credencial é incluída neste repositório. Licença MIT.

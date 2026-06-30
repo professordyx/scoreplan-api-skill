@@ -1,6 +1,0 @@
-codigo;nome;descricao;unidade;polaridade;meta;periodoTipo
-IND001;Receita Mensal;Receita total mensal da empresa;R$;Maior melhor;100000;SC_MES
-IND002;Satisfação do Cliente;NPS - Net Promoter Score;%;Maior melhor;80;SC_MES
-IND003;Turnover;Taxa de rotatividade de funcionários;%;Menor melhor;5;SC_MES
-IND004;Margem de Lucro;Margem de lucro líquido;%;Maior melhor;15;SC_MES
-IND005;Prazo de Entrega;Dias médios para entrega;dias;Menor melhor;3;SC_MES

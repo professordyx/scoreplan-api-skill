@@ -1,0 +1,542 @@
+
+======================================================================
+GET User/External/List  (args=QueryParams)
+ENUMS: [{property:"rows",value:"Uma lista que segue o mesmo padrao de cada uma das linhas do csv definido no 'Integrar valores realizados do fluxo de caixa'"}]
+BODY: {rows:[["RE","01/2023","01/2023","1","2","3","100","10"],["DE","01/2023","01/2023","1","2","3","4","100","10"],["CV","01/2023","01/2023","1","2","3","100","10"],["DV","01/2023","01/2023","1","2","3","4","100","10"],["DO","01/2023","01/2023","1","2","3","100","10","100","10"],["OU","01/2023","01/2023","1","2","3","100","10"],["SI","01/2023","01/2023","1","2","3","100","10"],["RO","01/2023","01/2023","1","2","3","100","10"]],budgetPlanCode:"2845"}
+PARAMS: {}
+
+======================================================================
+GET User/External/ListGroup  (args=QueryParams)
+ENUMS: [{property:"rows",value:"Uma lista que segue o mesmo padrao de cada uma das linhas do csv definido no 'Integrar valores realizados do fluxo de caixa'"}]
+BODY: {rows:[["RE","01/2023","01/2023","1","2","3","100","10"],["DE","01/2023","01/2023","1","2","3","4","100","10"],["CV","01/2023","01/2023","1","2","3","100","10"],["DV","01/2023","01/2023","1","2","3","4","100","10"],["DO","01/2023","01/2023","1","2","3","100","10","100","10"],["OU","01/2023","01/2023","1","2","3","100","10"],["SI","01/2023","01/2023","1","2","3","100","10"],["RO","01/2023","01/2023","1","2","3","100","10"]],budgetPlanCode:"2845"}
+PARAMS: {}
+
+======================================================================
+? Queue/GetStatus  (args=QueryParams)
+ENUMS: [{property:"rows",value:"Uma lista que segue o mesmo padrao de cada uma das linhas do csv definido no 'Integrar valores realizados do fluxo de caixa'"}]
+BODY: {rows:[["RE","01/2023","01/2023","1","2","3","100","10"],["DE","01/2023","01/2023","1","2","3","4","100","10"],["CV","01/2023","01/2023","1","2","3","100","10"],["DV","01/2023","01/2023","1","2","3","4","100","10"],["DO","01/2023","01/2023","1","2","3","100","10","100","10"],["OU","01/2023","01/2023","1","2","3","100","10"],["SI","01/2023","01/2023","1","2","3","100","10"],["RO","01/2023","01/2023","1","2","3","100","10"]],budgetPlanCode:"2845"}
+PARAMS: {id:2022}
+
+======================================================================
+? Attachments/External/GetFile  (args=QueryParams)
+ENUMS: [{property:"rows",value:"Uma lista que segue o mesmo padrao de cada uma das linhas do csv definido no 'Integrar valores realizados do fluxo de caixa'"}]
+BODY: {rows:[["RE","01/2023","01/2023","1","2","3","100","10"],["DE","01/2023","01/2023","1","2","3","4","100","10"],["CV","01/2023","01/2023","1","2","3","100","10"],["DV","01/2023","01/2023","1","2","3","4","100","10"],["DO","01/2023","01/2023","1","2","3","100","10","100","10"],["OU","01/2023","01/2023","1","2","3","100","10"],["SI","01/2023","01/2023","1","2","3","100","10"],["RO","01/2023","01/2023","1","2","3","100","10"]],budgetPlanCode:"2845"}
+PARAMS: {path:"filePath",hash:"fileHash",currentLanguage:"pt"}
+
+======================================================================
+? FinancialManagement/IntegrateValuesCashFlow  (args=)
+ENUMS: [{property:"rows",value:"Uma lista que segue o mesmo padrao de cada uma das linhas do csv definido no 'Integrar valores realizados do fluxo de caixa'"}]
+BODY: {rows:[["RE","01/2023","01/2023","1","2","3","100","10"],["DE","01/2023","01/2023","1","2","3","4","100","10"],["CV","01/2023","01/2023","1","2","3","100","10"],["DV","01/2023","01/2023","1","2","3","4","100","10"],["DO","01/2023","01/2023","1","2","3","100","10","100","10"],["OU","01/2023","01/2023","1","2","3","100","10"],["SI","01/2023","01/2023","1","2","3","100","10"],["RO","01/2023","01/2023","1","2","3","100","10"]],budgetPlanCode:"2845"}
+PARAMS: {budgetPlanCode:"API",budgetType:"DO"}
+
+======================================================================
+? FinancialManagement/ViewHierarchy  (args=)
+PARAMS: {budgetPlanCode:"API",budgetType:"DO"}
+
+======================================================================
+? FinancialManagement/ViewHierarchyOfUser  (args=)
+PARAMS: {budgetPlanCode:"API",budgetType:"DO",email:"teste@scoreplan.com.br",subsidiaryIntegrationCode:"2"}
+
+======================================================================
+GET FinancialManagement/ExternalListBudgetPlans  (args=QueryParams)
+PARAMS: {integrationCode:"100"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+PARAMS: {budgetType:"RE",period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+PARAMS: {budgetType:"DE",period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",salesDeduction:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+PARAMS: {budgetType:"CV",period:2022,subsidiary:"1",productLine:"Caxias do Sul",variableCosts:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+PARAMS: {budgetType:"DV",period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",variableExpenses:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+PARAMS: {budgetType:"DO",period:2022,subsidiary:"1",costCenter:"CXS10",account:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"OU",period:2022,subsidiary:"1",costCenter:"CXS10",otherAccounts:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"RO",period:2022,subsidiary:"1",costCenter:"CXS10",anotherRevenue:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"RH",period:2022,subsidiary:"1",staff:"CXS10",costCenter:"CXS10",account:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"CT",period:2022,subsidiary:"1",costCenter:"CXS10",accountingAccount:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"SI",period:2022,subsidiary:"1",costCenter:"CXS10",balance:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"VO",period:2026,subsidiary:"1",budgetVariable:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {budgetType:"IV",period:2022,subsidiary:"1",costCenter:"CXS10",investment:"CXS10",budgetPlanCode:"API"}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"",budgetType:"RE",month:1,period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"DE",month:1,period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",salesDeduction:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"CV",month:1,period:2022,subsidiary:"1",productLine:"Caxias do Sul",variableCosts:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"DV",month:1,period:2022,subsidiary:"1",salesChannel:"CXS10",productLine:"Caxias do Sul",variableExpenses:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"DO",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",account:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"OU",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",otherAccounts:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"RO",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",anotherRevenue:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"RH",month:1,period:2022,subsidiary:"1",staff:"CXS10",costCenter:"CXS10",account:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"CT",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",accountingAccount:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+BODY: {BudgetPlanCode:"API",SalesRevenue:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",PredictedQuantity:10,PredictedRevenue:10,PredictedUnitary:10,AccomplishedQuantity:10,AccomplishedRevenue:10,AccomplishedUnitary:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",VariableExpensesCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableCosts:[{Month:1,Year:2022,SubsidiaryCode:"1",ProductLineCode:"CXS10",VariableCostsCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,PredictedUnit
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"SI",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",balance:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+BODY: {BudgetPlanCode:"API",SalesRevenue:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",PredictedQuantity:10,PredictedRevenue:10,PredictedUnitary:10,AccomplishedQuantity:10,AccomplishedRevenue:10,AccomplishedUnitary:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",VariableExpensesCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableCosts:[{Month:1,Year:2022,SubsidiaryCode:"1",ProductLineCode:"CXS10",VariableCostsCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,PredictedUnit
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"VO",month:1,period:2022,subsidiary:"1",budgetVariable:"CX10",budgetPlanCode:"API",page:1}
+
+======================================================================
+GET FinancialManagement/SearchAnalyticalValues  (args=QueryParams)
+ENUMS: [{property:"userEmail",value:"Email do usuário que você precisa que a listagem seja filtrada. IMPORTANTE - você precisa ser administrador e caso não seja informado será filtrado com as suas permissões"}]
+BODY: {BudgetPlanCode:"API",SalesRevenue:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",PredictedQuantity:10,PredictedRevenue:10,PredictedUnitary:10,AccomplishedQuantity:10,AccomplishedRevenue:10,AccomplishedUnitary:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",VariableExpensesCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableCosts:[{Month:1,Year:2022,SubsidiaryCode:"1",ProductLineCode:"CXS10",VariableCostsCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,PredictedUnit
+PARAMS: {userEmail:"teste@scoreplan.com.br",budgetType:"IV",month:1,period:2022,subsidiary:"1",costCenter:"CXS10",investment:"CXS10",budgetPlanCode:"API",page:1}
+
+======================================================================
+POST FinancialManagement/ExternalInsertValues  (args=Body)
+BODY: {BudgetPlanCode:"API",SalesRevenue:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",PredictedQuantity:10,PredictedRevenue:10,PredictedUnitary:10,AccomplishedQuantity:10,AccomplishedRevenue:10,AccomplishedUnitary:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",VariableExpensesCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],VariableCosts:[{Month:1,Year:2022,SubsidiaryCode:"1",ProductLineCode:"CXS10",VariableCostsCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,PredictedUnitary:10,AccomplishedUnitary:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],SalesDeduction:[{Month:1,Year:2022,SubsidiaryCode:"1",SalesChannelCode:"CXS10",ProductLineCode:"CXS10",SalesDeductionCode:"CXS10",PredictedPercentage:10,PredictedValue:10,AccomplishedPercentage:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],OperationalExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",AccountCode:"CXS10",PredictedValue:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],OtherExpenses:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",OtherAccountCode:"CXS10",PredictedValue:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],StaffCosts:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",AccountCode:"CXS10",StaffCode:"CXS10",PredictedQuantity:10,PredictedUnitary:10,PredictedTotal:10,AccomplishedQuantity:10,AccomplishedUnitary:10,AccomplishedTotal:10}],BudgetAccounting:[{Month:1,Year:2022,SubsidiaryCode:"1",AccountingAccountCode:"CXS10",CostCenterCode:"CXS10",PredictedCredit:10,PredictedDebt:10,PredictedBalance:10,AccomplishedCredit:10,AccomplishedDebt:10,AccomplishedBalance:10}],OpeningBalance:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",BalanceCode:"CXS10",PredictedValue:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],Investments:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",InvestmentCode:"CXS10",PredictedValue:10,AccomplishedValue:15,PredictedInstallments:20,AccomplishedInstallments:25,PredictedDepreciation:30,AccomplishedDepreciation:35,PredictedResidual:40,AccomplishedResidual:45,PredictedFees:50,AccomplishedFees:55,PredictedAmortization:60,AccomplishedAmortization:65,PredictedBalance:70,AccomplishedBalance:75}],NonOperatingRevenue:[{Month:1,Year:2022,SubsidiaryCode:"1",CostCenterCode:"CXS10",AnotherRevenueCode:"CXS10",PredictedValue:10,AccomplishedValue:10,AuxiliaryTabValues:[{AuxTabCode:"ab1",PredictedValue:10}]}],BudgetVariables:[{Month:1,Year:2026,SubsidiaryCode:"1",BudgetVariableCode:"CXS10",PredictedValue:10,AccomplishedValue:10}]}
+
+======================================================================
+POST FinancialManagement/ExternalImportStructureInHierarchy  (args=Body)
+BODY: {BudgetPlanCode:"API",SalesChannel:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],ProductLine:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],VariableExpenses:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],SalesDeduction:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],CostCenter:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],Account:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],OtherAccounts:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],VariableCosts:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],Staff:[["CXS10","Caxias do Sul","[Cost Center Integration Code]","[Admission date inform in format dd/MM/yyyy]","[Nº of dependents]","Rio Grande do Sul","Brasil"],["","Porto Alegre","[Cost Center Integration Code]","[Admission date inform in format dd/MM/yyyy]","[Nº of dependents]","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","[Cost Center Integration Code]","[Admission date inform in format dd/MM/yyyy]","[Nº of dependents]","Santa Catarina","Brasil"]],AccountingAccount:[["CXS10","Caxias do Sul","[Nature inform letter C or D]","Rio Grande do Sul","Brasil"],["","Porto Alegre","[Nature inform letter C or D]","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","[Nature inform letter C or D]","Santa Catarina","Brasil"]],Balance:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],Investments:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],AnotherRevenue:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]],BudgetVariables:[["CXS10","Caxias do Sul","Rio Grande do Sul","Brasil"],["","Porto Alegre","Rio Grande do Sul","Brasil"],["FLP30","Florianópolis","Santa Catarina","Brasil"]]}
+
+======================================================================
+? FinancialManagement/IncomeStatement  (args=)
+PARAMS: {budgetPlanId:1007,incomeStatement:3514,subsidiary:8624,startDate:"01/01/2020",endDate:"01/12/2020",forecast:!1,showColumnLastYearRealized:!1,showColumnLastYearPlanned:!1,showColumnLastYearBaseValue:!1,showColumnNextYearPlanned:!1,showColumnNextYearRealized:!1,showColumnNextYearBaseValue:!1,showColumnPlanned:!0,showColumnRealized:!1,showColumnBaseValue:!1,showVariationValue:!1,showVariationPercent:!1,showHorizontalAnalysis:!1,showQuantity:!1,showVerticalAnalysis:!1,showCorporativeValues:!1,dtForecast:"01/01/2022",variation:"RL",showPeriods:!1,updateIndicators:!1,corporativeValues:!1}
+
+======================================================================
+? FinancialManagement/IncomeStatementChildren  (args=)
+BODY: {baseVerticalAnalysis:[{baseValue:0,date:"2020-01-01T00:00:00",forecast:0,horizontalBaseValue:0,horizontalForecast:0,horizontalLastYear:0,horizontalNextFiveYearsBaseValue:0,horizontalNextFiveYearsPredicted:0,horizontalNextFiveYearsRealized:0,horizontalNextFourYearsBaseValue:0,horizontalNextFourYearsPredicted:0,horizontalNextFourYearsRealized:0,horizontalNextThreeYearsBaseValue:0,horizontalNextThreeYearsPredicted:0,horizontalNextThreeYearsRealized:0,horizontalNextTwoYearsBaseValue:0,horizontalNextTwoYearsPredicted:0,horizontalNextTwoYearsRealized:0,horizontalNextYearBaseValue:0,horizontalNextYearPredicted:0,horizontalNextYearRealized:0,horizontalPredicted:0,horizontalRealized:0,lastYear:0,nextFiveYearsBaseValue:0,nextFiveYearsPredicted:0,nextFiveYearsRealized:0,nextFourYearsBaseValue:0,next
+PARAMS: {origin:1,lineIdFather:132213,lineId:null,budgetPlanId:1007,incomeStatement:3514,subsidiary:8624,startDate:"01/01/2020",endDate:"01/12/2020",forecast:!1,showColumnLastYearRealized:!1,showColumnLastYearPlanned:!1,showColumnLastYearBaseValue:!1,showColumnNextYearPlanned:!1,showColumnNextYearRealized:!1,showColumnNextYearBaseValue:!1,showColumnPlanned:!0,showColumnRealized:!1,showColumnBaseValue:!1,showVariationValue:!1,showVariationPercent:!1,showHorizontalAnalysis:!1,showQuantity:!1,showVerticalAnalysis:!1,showCorporativeValues:!1,dtForecast:"01/01/2022",variation:"RL",showPeriods:!1,updateIndicators:!1,corporativeValues:!1}
+
+======================================================================
+? FinancialManagement/Performance  (args=)
+PARAMS: {budgetPlanId:123,statementId:123,subsidiary:3714,startDate:"01/01/2019"}
+
+======================================================================
+? FinancialManagement/IncomeStatement  (args=)
+PARAMS: {budgetPlanId:1007,incomeStatement:3514,subsidiary:8624,startDate:"01/01/2020",endDate:"01/12/2020",forecast:!1,showColumnLastYearRealized:!1,showColumnLastYearPlanned:!1,showColumnLastYearBaseValue:!1,showColumnNextYearPlanned:!1,showColumnNextYearRealized:!1,showColumnNextYearBaseValue:!1,showColumnPlanned:!0,showColumnRealized:!1,showColumnBaseValue:!1,showVariationValue:!1,showVariationPercent:!1,showHorizontalAnalysis:!1,showQuantity:!1,showVerticalAnalysis:!1,showCorporativeValues:!1,dtForecast:"01/01/2022",variation:"RL",showPeriods:!1,updateIndicators:!1,corporativeValues:!1}
+
+======================================================================
+? FinancialManagement/IncomeStatement  (args=)
+PARAMS: {budgetPlanId:1007,incomeStatement:3514,subsidiary:8624,startDate:"01/01/2020",endDate:"01/12/2020",divider:"1000",forecast:!1,showColumnLastYearRealized:!1,showColumnLastYearPlanned:!1,showColumnLastYearBaseValue:!1,showColumnNextYearPlanned:!1,showColumnNextYearRealized:!1,showColumnNextYearBaseValue:!1,showColumnPlanned:!0,showColumnRealized:!1,showColumnBaseValue:!1,showVariationValue:!1,showVariationPercent:!1,showHorizontalAnalysis:!1,showQuantity:!1,showVerticalAnalysis:!1,showCorporativeValues:!1,dtForecast:"01/01/2022",variation:"RL",showPeriods:!1,updateIndicators:!1,corporativeValues:!1}
+
+======================================================================
+? FinancialManagement/BalanceSheet  (args=)
+PARAMS: {budgetPlanId:1007,incomeStatement:3514,subsidiary:8624,startDate:"01/01/2020",endDate:"01/12/2020",divider:"1000",forecast:!1,showColumnLastYearRealized:!1,showColumnLastYearPlanned:!1,showColumnLastYearBaseValue:!1,showColumnNextYearPlanned:!1,showColumnNextYearRealized:!1,showColumnNextYearBaseValue:!1,showColumnPlanned:!0,showColumnRealized:!1,showColumnBaseValue:!1,showVariationValue:!1,showVariationPercent:!1,showHorizontalAnalysis:!1,showQuantity:!1,showVerticalAnalysis:!1,showCorporativeValues:!1,dtForecast:"01/01/2022",variation:"RL",showPeriods:!1,updateIndicators:!1,corporativeValues:!1}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesOperationalExpenses  (args=)
+PARAMS: {budgetPlanId:123,group:7,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0,showCorporativeOPValues:!1}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesOtherExpenses  (args=)
+PARAMS: {budgetPlanId:123,group:7,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesNonOperatingRevenue  (args=)
+PARAMS: {budgetPlanId:123,group:7,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesBudgetVariables  (args=)
+PARAMS: {budgetPlanId:123,group:17,subsidiary:123,lov1:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesSalesRevenue  (args=)
+PARAMS: {budgetPlanId:123,group:3,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesStaffCosts  (args=)
+PARAMS: {budgetPlanId:123,group:7,hierarchy:8,subsidiary:123,lov1:123,lov2:123,lov3:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesBudgetAccounting  (args=)
+PARAMS: {budgetPlanId:123,group:12,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+? FinancialManagement/QueryBudgetValuesOpeningBalance  (args=)
+PARAMS: {budgetPlanId:123,group:7,subsidiary:123,lov1:123,lov2:123,startDate:"01/01/2024",endDate:"31/12/2024",showLevelBelow:!1,showHierarchy:!1,listAllItens:!0,lastYears:1,variation:"PR",baseValue:"O",showLastLevel:!1,dtForecast:null,showComments:!0}
+
+======================================================================
+GET Account/Lov  (args=QueryParams)
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET AccountingAccount/Lov  (args=QueryParams)
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET Balances/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",ite
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET CostCenter/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET FinancialManagement/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {page:1,elementsPerPage:20}
+
+======================================================================
+GET IncomeStatement/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20,type:1}
+
+======================================================================
+GET OtherAccounts/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET AnotherRevenue/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET ProductLine/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET SalesChannel/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET Staff/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET Subsidiary/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+GET BudgetVariables/Lov  (args=QueryParams)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,page:1,elementsPerPage:20}
+
+======================================================================
+POST FinancialManagementAccounting/ExternalImportValuesOfAccounting  (args=Body)
+BODY: {list:[{subsidiary:"unit",month:4,year:2022,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",credit:1e3,debt:1e3,balance:1e3,costCenterSuperior:"cc 0",accountSuperior:"acc 0"}],reproccessValues:!0}
+
+======================================================================
+POST FinancialManagementAccounting/ExternalIntegrateValues  (args=Body)
+BODY: {budgetPlanCode:"API",startDate:"11/2022",endDate:"12/2022",reproccessBudgets:!0}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+DELETE FinancialManagementAccounting/ExternalDeleteOfAccounting  (args=Body)
+BODY: {list:[{subsidiary:"unit",month:1,year:2022,costCenter:"cc 2",account:"acc 1",item1:"it 1",item2:"it 2"}]}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+POST FinancialManagementAccountingLedger/ExternalImportValuesOfAccounting  (args=Body)
+BODY: {list:[{releaseNumber:"123456789",subsidiary:"unit",date:new Date,costCenter:"cc 2",costCenterDescription:"ccost 22",account:"acc 1",accountDescription:"acc",item1:"it 1",item1Description:"item 1",item2:"it 2",item2Description:"item 2",value:1e3,complement1:"Complement 1",complement2:"Complement 2",item3:"it 3",item3Description:"item 3",batch:"batch"}],reproccessValues:!0}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+POST FinancialManagementAccountingLedger/ExternalIntegrateValues  (args=Body)
+BODY: {budgetPlanCode:"API",startDate:"11/2022",endDate:"12/2022",reproccessBudgets:!0}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+DELETE FinancialManagementAccountingLedger/ExternalDeleteOfAccounting  (args=Body)
+BODY: {list:[{releaseNumber:"123456789",subsidiary:"unit"}]}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+GET FinancialItems/ExternalGetValues  (args=QueryParams)
+BODY: {lines:[{itemIntegrationCode:"142",justification:[{text:"1"}],values:[{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0}]}]}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025}
+
+======================================================================
+POST FinancialItems/ExternalUpdateValues  (args=Both)
+BODY: {lines:[{itemIntegrationCode:"142",justification:[{text:"1"}],values:[{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0},{planned:1e3,accomplished:0}]}]}
+PARAMS: {budgetPlanId:123,origin:1,subsidiaryCode:"1",hierarchy1Code:"1",hierarchy2Code:"2",period:2025,updateValues:"planned"}
+
+======================================================================
+GET Program/External/List  (args=QueryParams)
+BODY: {title:"Programa 1",raci:{responsibles:[{userId:0,trackProgress:null}],groupResponsible:[{userGroupId:1271,trackProgress:null}],authorities:[{userId:0,trackProgress:null}],groupAuthority:[{userGroupId:1271,trackProgress:null}],consulted:[{userId:14}],groupConsulted:[{userGroupId:1271}],informed:[{userId:5625}],groupInformed:[{userGroupId:1272}]}}
+PARAMS: {}
+
+======================================================================
+GET Program/External/Select  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {title:"Programa 1",raci:{responsibles:[{userId:0,trackProgress:null}],groupResponsible:[{userGroupId:1271,trackProgress:null}],authorities:[{userId:0,trackProgress:null}],groupAuthority:[{userGroupId:1271,trackProgress:null}],consulted:[{userId:14}],groupConsulted:[{userGroupId:1271}],informed:[{userId:5625}],groupInformed:[{userGroupId:1272}]}}
+PARAMS: {id:1633}
+
+======================================================================
+POST Program/External/Insert  (args=Body)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {title:"Programa 1",raci:{responsibles:[{userId:0,trackProgress:null}],groupResponsible:[{userGroupId:1271,trackProgress:null}],authorities:[{userId:0,trackProgress:null}],groupAuthority:[{userGroupId:1271,trackProgress:null}],consulted:[{userId:14}],groupConsulted:[{userGroupId:1271}],informed:[{userId:5625}],groupInformed:[{userGroupId:1272}]}}
+PARAMS: {id:1633}
+
+======================================================================
+PUT Program/External/Update  (args=Body)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {id:1641,title:"Programa 1 - edit",raci:{responsibles:[{userId:0,trackProgress:null}],groupResponsible:[{userGroupId:1271,trackProgress:null}],authorities:[{userId:0,trackProgress:null}],groupAuthority:[{userGroupId:1271,trackProgress:null}],consulted:[{userId:14},{userId:5661}],groupConsulted:[{userGroupId:1271}],informed:[{userId:5625}],groupInformed:[{userGroupId:1272}]}}
+PARAMS: {id:1633}
+
+======================================================================
+DELETE Program/External/Delete  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+PARAMS: {id:1633}
+
+======================================================================
+GET Project/External/List  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+PARAMS: {programId:1,dateModifiedFrom:"01/01/2025",startDateEstimated:"01/01/2025",endDateEstimated:"01/01/2026",situation:"1,2,3",title:"proj",page:1,rowsPerPage:20}
+
+======================================================================
+GET Project/External/Select  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {title:"Projeto 1",programId:2,situation:1,level:"E",startDateEstimated:"01/10/2022",endDateEstimated:"01/10/2022",validateDate:!1,estimatedExpenseDeduction:7.9,estimatedRevenueDeduction:8.7,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:6,trackProgress:!1}],groupConsulted:[{userGroupId:1,trackProgress:!1}],informed:[{userId:6,trackProgress:!1}],groupInformed:[{userGroupId:1,trackProgress:!1}]},ext
+PARAMS: {id:2}
+
+======================================================================
+POST Project/External/Insert  (args=Body)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {title:"Projeto 1",programId:2,situation:1,level:"E",startDateEstimated:"01/10/2022",endDateEstimated:"01/10/2022",validateDate:!1,estimatedExpenseDeduction:7.9,estimatedRevenueDeduction:8.7,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:6,trackProgress:!1}],groupConsulted:[{userGroupId:1,trackProgress:!1}],informed:[{userId:6,trackProgress:!1}],groupInformed:[{userGroupId:1,trackProgress:!1}]},extraFields:[{path:"field",value:"field 1 value"}],tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+
+======================================================================
+PUT Project/External/Update  (args=Body)
+ENUMS: [{property:"Situation",value:"1 - Aberto | 2 - Fechado | 3 - Em aprovação | 4 - Cancelado"},{property:"Level",value:"E - Estratégico | T - Tático | O - Operacional"}]
+BODY: {id:6,title:"Projeto 1 - edit",programId:2,situation:1,level:"E",startDateEstimated:"01/10/2022",endDateEstimated:"01/10/2022",validateDate:!1,estimatedExpenseDeduction:7.9,estimatedRevenueDeduction:8.7,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:5,trackProgress:!1}],groupConsulted:[{userGroupId:1,trackProgress:!1}],informed:[{userId:6,trackProgress:!1}],groupInformed:[{userGroupId:1,trackProgress:!1}]},extraFields:[{path:"field",value:"field 1 value - edit"}],tags:["Tag 1 - edit","Tag 2 - edit","Tag 3 - edit"],sector:"Setor scoreplan - edit"}
+PARAMS: {id:535}
+
+======================================================================
+DELETE Project/External/Delete  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Fase 1",projectId:4118,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",estimatedExpenseDeduction:4.9,estimatedRevenueDeduction:5.4,weight:19}
+PARAMS: {id:535}
+
+======================================================================
+GET ProjectPhase/External/List  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Fase 1",projectId:4118,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",estimatedExpenseDeduction:4.9,estimatedRevenueDeduction:5.4,weight:19}
+PARAMS: {projectId:4118}
+
+======================================================================
+GET ProjectPhase/External/Select  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Fase 1",projectId:4118,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",estimatedExpenseDeduction:4.9,estimatedRevenueDeduction:5.4,weight:19}
+PARAMS: {id:12433}
+
+======================================================================
+POST ProjectPhase/External/Insert  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Fase 1",projectId:4118,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",estimatedExpenseDeduction:4.9,estimatedRevenueDeduction:5.4,weight:19}
+PARAMS: {id:12401}
+
+======================================================================
+PUT ProjectPhase/External/Update  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {id:12433,title:"Fase 1 - edit",projectId:4118,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",estimatedExpenseDeduction:4.9,estimatedRevenueDeduction:5.4,weight:19}
+PARAMS: {id:12401}
+
+======================================================================
+DELETE ProjectPhase/External/Delete  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Acao 4 da fase",phaseId:12401,startDateEstimated:"27/09/2022",endDateEstimated:"27/09/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+PARAMS: {id:12401}
+
+======================================================================
+GET ProjectPhase/External/ListAction  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Iniciativa - OKR ]"},{property:"Traceability",value:"detailOrigin - [Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | 
+BODY: {title:"Acao 4 da fase",phaseId:12401,startDateEstimated:"27/09/2022",endDateEstimated:"27/09/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+PARAMS: {phaseId:12477}
+
+======================================================================
+POST ProjectPhase/External/InsertAction  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {title:"Acao 4 da fase",phaseId:12401,startDateEstimated:"27/09/2022",endDateEstimated:"27/09/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+
+======================================================================
+PUT ProjectPhase/External/UpdateAction  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {id:141090,title:"Acao 4 - edit",phaseId:12436,startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1 - edit","Tag 2 - edit","Tag 3 - edit"],sector:"Setor scoreplan - edit"}
+PARAMS: {user:"score@scoreplan.com.br",situation:0,dtEnd:"01/01/2024",indCode:0,page:1,quantityPerPage:10,dateModifiedFrom:"01/01/2024 12:00:00"}
+
+======================================================================
+GET Actions/External/List  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"DetailOrigin",value:"{ Iniciativa - Mapa { iniciativa, mapa estratégico, objetivo, origem, perspectiva } | Iniciativa - OKR { iniciativa, okr, origem, resultado-chave } | FCA - Indicador { origem, fca, indicador, período } | FCA - Ocorrência { origem, fca, ocorrência } | Reunião { origem, reunião } | Projeto { fase, origem, pro
+PARAMS: {user:"score@scoreplan.com.br",situation:0,dtEnd:"01/01/2024",indCode:0,page:1,quantityPerPage:10,dateModifiedFrom:"01/01/2024 12:00:00"}
+
+======================================================================
+GET Actions/External/Select  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"},{property:"SimplifiedTraceability",value:"[ Iniciativa - Mapa | Iniciativa - OKR | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Colaborador - Competência | PDI | Item SWOT ]"},{property:"LastSimplifiedTraceability",value:"{ Iniciativa - Mapa | Iniciativa - OKR | FCA - Indicador | Reunião | Projeto | Risco | Ocorrência | Cola
+BODY: {title:"Action Inserted by API",startDateEstimated:"27/09/2022",endDateEstimated:"27/09/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+PARAMS: {id:141090}
+
+======================================================================
+POST Actions/External/Insert  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {title:"Action Inserted by API",startDateEstimated:"27/09/2022",endDateEstimated:"27/09/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1","Tag 2","Tag 3"],sector:"Setor scoreplan"}
+
+======================================================================
+POST Actions/External/InsertChangeProgress  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {description:"alterado o progresso",actionId:141044,date:"29/09/2022",percentageConclusion:5,realizedExpenseDeduction:4.5,realizedRevenueDeduction:5.9}
+
+======================================================================
+POST Actions/External/Reopen  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {actionId:141085,date:"06/10/2022",description:"reaberta a ação"}
+
+======================================================================
+PUT Actions/External/Update  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {id:141090,title:"Acao 4 - edit",startDateEstimated:"03/10/2022",endDateEstimated:"03/10/2022",situation:0,raci:{responsibles:[{userId:0,trackProgress:!1}],groupResponsible:[{userGroupId:1271,trackProgress:!1}],authorities:[{userId:0,trackProgress:!1}],groupAuthority:[{userGroupId:1271,trackProgress:!1}],consulted:[{userId:14,trackProgress:!1}],groupConsulted:[{userGroupId:1271,trackProgress:!1}],informed:[{userId:5625,trackProgress:!1}],groupInformed:[{userGroupId:1272,trackProgress:!1}]},tags:["Tag 1 - edit","Tag 2 - edit","Tag 3 - edit"],sector:"Setor scoreplan - edit"}
+PARAMS: {id:141044}
+
+======================================================================
+PUT Actions/External/UpdateValues  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {actionId:141090,date:"03/10/2022",valuePredictedExpense:10.5,valueRealizedExpense:5.5,valuePredictedRecipe:25.5,valueRealizedRecipe:35.5,valueReleased:30}
+PARAMS: {id:141044}
+
+======================================================================
+POST Actions/External/Cancel  (args=Body)
+ENUMS: [{property:"Situation",value:"0 - Não iniciado | 1 - Em andamento | 2 - Finalizado | 3 - Cancelado | 4 - Rascunho | 5 - Finalizado com atraso | 6 - Arquivado"}]
+BODY: {actionId:141085,description:"cancelar ação"}
+PARAMS: {id:141044}
+
+======================================================================
+DELETE Actions/Delete  (args=QueryParams)
+ENUMS: [{property:"schooling",value:"1 - Educação Infantil | 2 - Ensino Fundamental | 3 - Ensino Médio | 4 - Ensino Superior Incompleto | 5 - Ensino Superior Completo | 6 - Pós-graduação | 7 - Mestrado | 8 - Doutorado | 9 - Pós-doutorado"},{property:"active",value:"S - Sim | N - Não"}]
+PARAMS: {id:141044}
+
+======================================================================
+POST HrmOrganizationChart/External/ImportPositions  (args=Body)
+ENUMS: [{property:"schooling",value:"1 - Educação Infantil | 2 - Ensino Fundamental | 3 - Ensino Médio | 4 - Ensino Superior Incompleto | 5 - Ensino Superior Completo | 6 - Pós-graduação | 7 - Mestrado | 8 - Doutorado | 9 - Pós-doutorado"},{property:"active",value:"S - Sim | N - Não"}]
+
+======================================================================
+POST HrmUserInfos/External/ImportEmployees  (args=Body)
+ENUMS: [{property:"schooling",value:"1 - Educação Infantil | 2 - Ensino Fundamental | 3 - Ensino Médio | 4 - Ensino Superior Incompleto | 5 - Ensino Superior Completo | 6 - Pós-graduação | 7 - Mestrado | 8 - Doutorado | 9 - Pós-doutorado"},{property:"active",value:"S - Sim | N - Não"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+POST HrmSkills/External/ImportSkills  (args=Body)
+ENUMS: [{property:"skillIntegrationCode",value:"código de integração da competência"},{property:"positionIntegrationCode",value:"código de integração do cargo"},{property:"note",value:"0 - 10"},{property:"level",value:"1 - Básico | 2 - Essencial | 3 - Específico"},{property:"evaluationType",value:"1 - Periódico 2 - Experiência 3 - Ambos"},{property:"whoAnswers",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+POST HrmSkills/External/ImportPositionSkills  (args=Body)
+ENUMS: [{property:"skillIntegrationCode",value:"código de integração da competência"},{property:"positionIntegrationCode",value:"código de integração do cargo"},{property:"note",value:"0 - 10"},{property:"level",value:"1 - Básico | 2 - Essencial | 3 - Específico"},{property:"evaluationType",value:"1 - Periódico 2 - Experiência 3 - Ambos"},{property:"whoAnswers",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+POST HrmSkills/External/ImportEmployeeSkills  (args=Body)
+ENUMS: [{property:"note",value:"0 - 10"},{property:"whoAnswers",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"},{property:"skillIntegrationCode",value:"código de integração da competência"},{property:"employeeIntegrationCode",value:"código de integração do colaborador"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+GET HrmOrganizationChart/External/List  (args=QueryParams)
+ENUMS: [{property:"rowsPerPage",value:"1 - 100"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+GET HrmUserInfos/External/List  (args=QueryParams)
+ENUMS: [{property:"note",value:"0 - 10"},{property:"level",value:"1 - Básico | 2 - Essencial | 3 - Específico"},{property:"evaluationType",value:"1 - Periódico | 2 - Experiência | 3 - Ambos"},{property:"whoAnswer",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+GET HrmSkills/External/List  (args=QueryParams)
+ENUMS: [{property:"note",value:"0 - 10"},{property:"level",value:"1 - Básico | 2 - Essencial | 3 - Específico"},{property:"evaluationType",value:"1 - Periódico | 2 - Experiência | 3 - Ambos"},{property:"whoAnswer",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"}]
+PARAMS: {page:1,rowsPerPage:100}
+
+======================================================================
+GET HrmSkills/External/ListPositionSkills  (args=QueryParams)
+ENUMS: [{property:"note",value:"0 - 10"},{property:"level",value:"1 - Básico | 2 - Essencial | 3 - Específico"},{property:"evaluationType",value:"1 - Periódico | 2 - Experiência | 3 - Ambos"},{property:"whoAnswer",value:"1 - Avaliação | 2 - Autoavaliação | 3 - 180° | 4 - 360°"}]
+PARAMS: {page:1,rowsPerPage:100,positionIntegrationCode:"CEO001"}
+
+======================================================================
+GET HrmSkills/External/ListEmployeeSkills  (args=QueryParams)
+ENUMS: [{property:"note",value:"0 - 10"}]
+PARAMS: {page:1,rowsPerPage:100,employeeIntegrationCode:"FF01",whoAnswers:1}
+
+======================================================================
+GET OKR/External/List  (args=QueryParams)
+ENUMS: [{property:"Level",value:"1 - Organizacional | 2 - Equipe | 3 - Individual"},{property:"Calculation",value:"1 - De acordo com os KRs | 2 - De acordo com a hierarquia"},{property:"Scale",value:"1 - De acordo com percentual | 2 - De acordo com escala de pontuação"},{property:"TypeOfMeasurement",value:"1 - Numérico | 2 - Percentual | 3 - Valor monetário | 4 - Marco"},{property:"FormOfMeasurement",value:"1 - Resultado-chave | 2 - Iniciativas | 3 - Projetos | 4 - Indicadores"},{property:"Situation",v
+PARAMS: {startDate:"01/01/2024",endDate:"31/01/2024",search:"OKR PAI",responsibleEmail:"teste@scoreplan.com.br",authorityEmail:"teste@scoreplan.com.br",page:1,rowsPerPage:100}
+
+======================================================================
+GET GedDocument/External/List  (args=QueryParams)
+ENUMS: [{property:"Situation",value:"0 - Aberto | 1 - Finalizado | 2 - Obsoleto"}]
+PARAMS: {situation:"1",category:1,expired:!1,nextToExpire:!1,stepsNextToExpire:!1,isTemplateDoc:!1,onlyWithCurrentStepExpired:!1,favorite:!1,needsMyReadAcknowledgment:!1,needsReadAcknowledgment:!1,filter:"Test name",page:1,rowsPerPage:100}
+
+======================================================================
+GET GedDocument/External/Select  (args=QueryParams)
+PARAMS: {id:2327}
